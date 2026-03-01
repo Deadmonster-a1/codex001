@@ -33,28 +33,28 @@ const services = [
 
 export function Services() {
   return (
-    <section className="px-4 py-24">
-      <div className="mx-auto max-w-7xl">
+    <section className="px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-[1200px]">
         {/* Section header */}
-        <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="font-mono text-xs uppercase tracking-wider text-accent">
-              Our Services
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+              {'// '}Our Services
             </span>
-            <h2 className="mt-3 font-mono text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="mt-2 font-mono text-2xl font-bold text-foreground md:text-4xl">
               OUR SERVICES
             </h2>
           </div>
-          <div className="flex flex-col items-start gap-4 md:items-end">
+          <div className="flex flex-col items-start gap-3 md:items-end">
             <span className="font-mono text-xs text-muted-foreground">
-              [ + 04 Services]
+              {"[ + 04 Services ]"}
             </span>
-            <p className="max-w-md text-right text-sm leading-relaxed text-muted-foreground">
+            <p className="max-w-md text-sm leading-relaxed text-muted-foreground md:text-right">
               {"Everything you need to build, launch, and scale your digital presence -- all under one roof."}
             </p>
             <Link
               href="/contact"
-              className="clip-corner-sm bg-accent px-6 py-2.5 font-mono text-sm font-semibold text-foreground transition-opacity hover:opacity-90"
+              className="clip-corner-btn bg-accent px-6 py-2.5 font-mono text-xs font-semibold text-accent-foreground transition-opacity hover:opacity-90"
             >
               Get Started
             </Link>
@@ -62,13 +62,14 @@ export function Services() {
         </div>
 
         {/* Services grid */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2">
           {services.map((service) => (
             <div
               key={service.number}
-              className="group border border-border bg-card p-8 transition-all hover:border-accent/30"
+              className="group border border-border-dark bg-[#0a0a0a] p-7 transition-all hover:border-accent/30 md:p-8"
             >
-              <div className="mb-6 flex items-center gap-3">
+              {/* Number badge */}
+              <div className="mb-5 flex items-center gap-2">
                 <span className="font-mono text-xs text-accent">{"}"}</span>
                 <span className="font-mono text-sm font-bold text-foreground">
                   {service.number}
@@ -77,18 +78,18 @@ export function Services() {
               </div>
 
               {/* Tags */}
-              <div className="mb-6 flex flex-wrap gap-2">
+              <div className="mb-5 flex flex-wrap gap-2">
                 {service.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-sm border border-border px-3 py-1 font-mono text-xs text-muted-foreground"
+                    className="border border-border-dark px-3 py-1 font-mono text-[10px] text-muted-foreground"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <h3 className="mb-3 font-mono text-xl font-bold text-foreground">
+              <h3 className="mb-3 font-mono text-lg font-bold text-foreground">
                 {service.title}
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">

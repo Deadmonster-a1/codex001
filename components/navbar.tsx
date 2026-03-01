@@ -2,85 +2,107 @@
 
 import Link from "next/link"
 import { useState } from "react"
-import { Menu, X } from "lucide-react"
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center px-4 pt-4">
-      <div className="flex w-full max-w-7xl items-center justify-between rounded-lg border border-border bg-background/80 px-6 py-3 backdrop-blur-md">
-        <Link href="/" className="font-mono text-lg font-bold text-foreground">
+    <nav className="fixed top-0 left-0 right-0 z-50 px-4 pt-4 md:px-6">
+      <div className="mx-auto flex max-w-[1200px] items-center justify-between border border-border bg-surface px-5 py-3 md:px-8 md:py-4">
+        {/* Left: Logo */}
+        <Link href="/" className="font-mono text-base font-bold tracking-tight text-dark">
           ASCI
         </Link>
 
-        {/* Desktop nav */}
+        {/* Center: Navigation links (desktop) */}
         <div className="hidden items-center gap-8 md:flex">
           <Link
+            href="/"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
+          >
+            Home
+          </Link>
+          <Link
             href="/projects"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
           >
             Projects
           </Link>
           <Link
             href="/blogs"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
           >
             Blogs
           </Link>
           <Link
             href="/contact"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
           >
             Contact
           </Link>
         </div>
 
+        {/* Right: CTA button (desktop) */}
         <Link
           href="/contact"
-          className="hidden clip-corner-sm bg-accent px-5 py-2.5 font-mono text-sm font-semibold text-foreground transition-opacity hover:opacity-90 md:block"
+          className="hidden clip-corner-btn bg-accent px-6 py-2.5 font-mono text-xs font-semibold text-accent-foreground transition-opacity hover:opacity-90 md:block"
         >
           Get Started
         </Link>
 
-        {/* Mobile toggle */}
+        {/* Mobile hamburger */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-foreground md:hidden"
+          className="flex flex-col gap-1.5 md:hidden"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          <span
+            className={`block h-0.5 w-5 bg-dark transition-transform ${isOpen ? "translate-y-2 rotate-45" : ""}`}
+          />
+          <span
+            className={`block h-0.5 w-5 bg-dark transition-opacity ${isOpen ? "opacity-0" : ""}`}
+          />
+          <span
+            className={`block h-0.5 w-5 bg-dark transition-transform ${isOpen ? "-translate-y-2 -rotate-45" : ""}`}
+          />
         </button>
       </div>
 
       {/* Mobile menu */}
       {isOpen && (
-        <div className="absolute top-full left-4 right-4 mt-2 flex flex-col gap-4 rounded-lg border border-border bg-background/95 p-6 backdrop-blur-md md:hidden">
+        <div className="mt-1 flex flex-col border border-border bg-surface p-6 md:hidden">
+          <Link
+            href="/"
+            onClick={() => setIsOpen(false)}
+            className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
+          >
+            Home
+          </Link>
           <Link
             href="/projects"
             onClick={() => setIsOpen(false)}
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
           >
             Projects
           </Link>
           <Link
             href="/blogs"
             onClick={() => setIsOpen(false)}
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
           >
             Blogs
           </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
+            className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
           >
             Contact
           </Link>
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="clip-corner-sm bg-accent px-5 py-2.5 text-center font-mono text-sm font-semibold text-foreground transition-opacity hover:opacity-90"
+            className="mt-4 clip-corner-btn bg-accent px-6 py-3 text-center font-mono text-sm font-semibold text-accent-foreground"
           >
             Get Started
           </Link>

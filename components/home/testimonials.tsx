@@ -1,5 +1,3 @@
-import { Star } from "lucide-react"
-
 const testimonials = [
   {
     name: "Sarah Mitchell",
@@ -21,56 +19,68 @@ const testimonials = [
   },
 ]
 
+function StarIcon({ filled }: { filled: boolean }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill={filled ? "currentColor" : "none"}
+      stroke="currentColor"
+      strokeWidth="2"
+      className="text-accent"
+    >
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+    </svg>
+  )
+}
+
 export function Testimonials() {
   return (
-    <section className="px-4 py-24">
-      <div className="mx-auto max-w-7xl">
+    <section className="px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-[1200px]">
         {/* Section header */}
-        <div className="mb-16 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-12 flex flex-col gap-6 md:mb-16 md:flex-row md:items-end md:justify-between">
           <div>
-            <span className="font-mono text-xs uppercase tracking-wider text-accent">
-              Testimonials
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+              {'// '}Testimonials
             </span>
-            <h2 className="mt-3 font-mono text-3xl font-bold text-foreground md:text-4xl">
+            <h2 className="mt-2 font-mono text-2xl font-bold text-foreground md:text-4xl">
               TESTIMONIALS
             </h2>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-border px-4 py-2">
-            <Star size={14} className="fill-accent text-accent" />
-            <span className="font-mono text-xs text-muted-foreground">
+          <div className="flex items-center gap-2 border border-border-dark px-4 py-2">
+            <StarIcon filled />
+            <span className="font-mono text-[10px] text-muted-foreground">
               4.9/5 Rated
             </span>
           </div>
         </div>
 
-        {/* Testimonials grid */}
-        <div className="grid gap-6 md:grid-cols-3">
-          {testimonials.map((testimonial) => (
+        {/* Grid */}
+        <div className="grid gap-5 md:grid-cols-3">
+          {testimonials.map((t) => (
             <div
-              key={testimonial.name}
-              className="border border-border bg-card p-8 transition-all hover:border-accent/30"
+              key={t.name}
+              className="border border-border-dark bg-[#0a0a0a] p-7 transition-all hover:border-accent/30 md:p-8"
             >
               {/* Stars */}
-              <div className="mb-6 flex gap-1">
-                {Array.from({ length: testimonial.rating }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={14}
-                    className="fill-accent text-accent"
-                  />
+              <div className="mb-5 flex gap-1">
+                {Array.from({ length: t.rating }).map((_, i) => (
+                  <StarIcon key={i} filled />
                 ))}
               </div>
 
               <p className="mb-8 text-sm leading-relaxed text-muted-foreground">
-                {`"${testimonial.text}"`}
+                {`"${t.text}"`}
               </p>
 
               <div>
                 <p className="font-mono text-sm font-semibold text-foreground">
-                  {testimonial.name}
+                  {t.name}
                 </p>
-                <p className="font-mono text-xs text-muted-foreground">
-                  {testimonial.role}
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  {t.role}
                 </p>
               </div>
             </div>

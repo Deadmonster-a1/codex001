@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { Plus, Minus } from "lucide-react"
 
 const faqs = [
   {
@@ -35,41 +34,50 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <section className="px-4 py-24">
-      <div className="mx-auto max-w-7xl">
+    <section className="px-4 py-20 md:px-6 md:py-28">
+      <div className="mx-auto max-w-[1200px]">
         {/* Section header */}
-        <div className="mb-16">
-          <span className="font-mono text-xs uppercase tracking-wider text-accent">
-            FAQ
+        <div className="mb-12 md:mb-16">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-accent">
+            {'// '}FAQ
           </span>
-          <h2 className="mt-3 font-mono text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="mt-2 font-mono text-2xl font-bold text-foreground md:text-4xl">
             FREQUENTLY ASKED
           </h2>
         </div>
 
         {/* FAQ items */}
-        <div className="divide-y divide-border">
+        <div className="divide-y divide-border-dark">
           {faqs.map((faq, index) => (
-            <div key={index} className="py-6">
+            <div key={index} className="py-5">
               <button
                 onClick={() =>
                   setOpenIndex(openIndex === index ? null : index)
                 }
                 className="flex w-full items-center justify-between gap-4 text-left"
               >
-                <span className="font-mono text-sm font-semibold text-foreground md:text-base">
+                <span className="font-mono text-sm font-semibold text-foreground">
                   {faq.question}
                 </span>
-                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-border">
-                  {openIndex === index ? (
-                    <Minus size={14} className="text-accent" />
-                  ) : (
-                    <Plus size={14} className="text-muted-foreground" />
-                  )}
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center border border-border-dark">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={`transition-transform ${openIndex === index ? "rotate-45" : ""} ${openIndex === index ? "text-accent" : "text-muted-foreground"}`}
+                  >
+                    <line x1="12" y1="5" x2="12" y2="19" />
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
                 </div>
               </button>
               {openIndex === index && (
-                <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                   {faq.answer}
                 </p>
               )}

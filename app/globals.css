@@ -3,19 +3,20 @@
 @theme {
   --color-background: #000000;
   --color-foreground: #ffffff;
+  --color-dark: #030303;
   --color-muted: #667085;
   --color-muted-foreground: #98a2b3;
-  --color-border: #1a1a1a;
-  --color-border-light: #eaecf0;
+  --color-border: #eaecf0;
+  --color-border-dark: #1d2939;
   --color-accent: #ff7122;
-  --color-accent-dark: #8f4e2b;
-  --color-card: #0a0a0a;
-  --color-card-foreground: #ffffff;
+  --color-accent-foreground: #ffffff;
   --color-surface: #f9fafb;
   --color-surface-foreground: #030303;
+  --color-card: #ffffff;
+  --color-card-foreground: #030303;
 
   --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-mono: "JetBrains Mono", "Fragment Mono", "Inconsolata", monospace;
 
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
@@ -45,7 +46,6 @@ body {
   color: var(--color-foreground);
 }
 
-/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -73,11 +73,97 @@ body {
   animation: marquee 30s linear infinite;
 }
 
-/* Clip path for card corners */
+.animate-marquee-slow {
+  animation: marquee 60s linear infinite;
+}
+
+/* Clip path for beveled corners - matching Framer's polygon exactly */
 .clip-corner {
-  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 100% 100%, 24px 100%, 0 calc(100% - 24px), 0 0);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 24px) 0,
+    100% 24px,
+    100% 100%,
+    100% 100%,
+    24px 100%,
+    0 calc(100% - 24px),
+    0 0
+  );
 }
 
 .clip-corner-sm {
-  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 100% 100%, 16px 100%, 0 calc(100% - 16px), 0 0);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 12px) 0,
+    100% 12px,
+    100% 100%,
+    100% 100%,
+    12px 100%,
+    0 calc(100% - 12px),
+    0 0
+  );
+}
+
+.clip-corner-btn {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 16px) 0,
+    100% 16px,
+    100% 100%,
+    100% 100%,
+    16px 100%,
+    0 calc(100% - 16px),
+    0 0
+  );
+}
+
+/* Stat card clip-path matching original SVG path */
+.clip-stat-card {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 15.5%) 0,
+    100% 15.5%,
+    100% 100%,
+    100% 100%,
+    15.5% 100%,
+    0 calc(100% - 15.5%),
+    0 0
+  );
+}
+
+/* Dotted background pattern */
+.bg-dots {
+  background-image: radial-gradient(circle, var(--color-muted-foreground) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Accordion animation */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--accordion-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--accordion-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
 }

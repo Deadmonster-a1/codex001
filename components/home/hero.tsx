@@ -1,80 +1,86 @@
 import Link from "next/link"
 
+const stats = [
+  { number: "50", suffix: "//", label1: "Years", label2: "Industry", label3: "Experience" },
+  { number: "150", suffix: "%", label1: "", label2: "Customer", label3: "Satisfaction" },
+  { number: "300", suffix: "+", label1: "", label2: "Projects", label3: "Completed" },
+]
+
+function StatCard({ number, suffix, label2, label3 }: {
+  number: string
+  suffix: string
+  label1: string
+  label2: string
+  label3: string
+}) {
+  return (
+    <div className="flex flex-col items-center bg-card clip-stat-card border border-border p-4 md:p-6">
+      <div className="mb-3 flex items-baseline gap-1">
+        <span className="font-mono text-3xl font-bold text-dark md:text-[44px] leading-tight">
+          {number}
+        </span>
+        <span className="font-mono text-sm font-medium text-accent">{suffix}</span>
+      </div>
+      <span className="font-mono text-[10px] uppercase tracking-wider text-muted">
+        {label2}
+      </span>
+      <span className="font-mono text-[10px] uppercase tracking-wider text-muted">
+        {label3}
+      </span>
+    </div>
+  )
+}
+
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-16">
-      {/* Background grid pattern */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section className="relative bg-surface px-4 pt-24 pb-0 md:px-6 md:pt-28">
+      {/* Dotted background pattern */}
+      <div className="pointer-events-none absolute inset-0 bg-dots opacity-20" />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col items-center text-center">
-        {/* Tag line */}
-        <div className="mb-8 flex items-center gap-3 rounded-full border border-border px-4 py-2">
-          <span className="h-2 w-2 rounded-full bg-accent" />
-          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-            Creative Agency
+      <div className="relative mx-auto max-w-[1200px] pt-8 pb-0 md:pt-16">
+        {/* Top label */}
+        <div className="mb-6 flex items-center gap-2">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+            {'// '}Creative Agency
           </span>
         </div>
 
         {/* Main heading */}
-        <h1 className="max-w-4xl font-mono text-4xl font-bold leading-tight text-foreground md:text-6xl lg:text-7xl">
+        <h1 className="max-w-[900px] font-mono text-3xl font-bold leading-[1.15] text-dark md:text-5xl lg:text-[56px]">
           <span className="text-balance">
             Forget generic websites.{" "}
-            <span className="text-muted-foreground">
+            <span className="text-muted">
               Get the tools and strategies that actually drive growth and make
               your brand shine.
             </span>
           </span>
         </h1>
 
-        {/* CTA buttons */}
-        <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
+        {/* CTA row */}
+        <div className="mt-8 flex items-center gap-6 md:mt-10">
           <Link
             href="/contact"
-            className="clip-corner-sm bg-accent px-8 py-3.5 font-mono text-sm font-semibold text-foreground transition-opacity hover:opacity-90"
+            className="clip-corner-btn bg-accent px-7 py-3 font-mono text-xs font-semibold text-accent-foreground transition-opacity hover:opacity-90"
           >
             Get Started
           </Link>
           <Link
             href="/projects"
-            className="px-8 py-3.5 font-mono text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
           >
-            View Projects
+            Our Projects
           </Link>
         </div>
 
         {/* Stats row */}
-        <div className="mt-20 grid w-full max-w-3xl grid-cols-3 gap-8 border-t border-border pt-10">
-          <div className="flex flex-col items-center">
-            <span className="font-mono text-3xl font-bold text-foreground md:text-4xl">
-              50
-            </span>
-            <span className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              Years Experience
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="font-mono text-3xl font-bold text-foreground md:text-4xl">
-              150%
-            </span>
-            <span className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              Customer Satisfaction
-            </span>
-          </div>
-          <div className="flex flex-col items-center">
-            <span className="font-mono text-3xl font-bold text-foreground md:text-4xl">
-              300+
-            </span>
-            <span className="mt-1 font-mono text-xs uppercase tracking-wider text-muted-foreground">
-              Projects Completed
-            </span>
-          </div>
+        <div className="mt-12 grid grid-cols-3 gap-3 md:mt-16 md:grid-cols-6 md:gap-4">
+          {stats.map((stat, i) => (
+            <StatCard key={i} {...stat} />
+          ))}
+          {/* Duplicate for 6 cards on desktop, 3 on mobile */}
+          {stats.map((stat, i) => (
+            <StatCard key={`dup-${i}`} {...stat} />
+          ))}
         </div>
       </div>
     </section>
