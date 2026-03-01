@@ -40,6 +40,12 @@ export function Navbar() {
           >
             Contact
           </Link>
+          <Link
+            href="/chats"
+            className="font-mono text-xs font-medium text-muted transition-colors hover:text-dark"
+          >
+            Chats
+          </Link>
         </div>
 
         {/* Right: CTA button (desktop) */}
@@ -98,6 +104,13 @@ export function Navbar() {
             className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
           >
             Contact
+          </Link>
+          <Link
+            href="/chats"
+            onClick={() => setIsOpen(false)}
+            className="border-b border-border py-4 font-mono text-sm font-medium text-dark"
+          >
+            Chats
           </Link>
           <Link
             href="/contact"
